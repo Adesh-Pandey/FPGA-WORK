@@ -1,0 +1,54 @@
+$date
+	Thu Jun 25 15:12:41 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module eight_bit_alu_case_tb $end
+$scope module alu $end
+$var wire 8 ! a [7:0] $end
+$var wire 8 " b [7:0] $end
+$var wire 3 # sel [2:0] $end
+$var reg 1 $ c $end
+$var reg 8 % o [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b10000 %
+0$
+b0 #
+b1 "
+b1111 !
+$end
+#100000
+b10 %
+b1 !
+#200000
+b0 %
+b1 #
+#300000
+b1 %
+b10 #
+#400000
+b11 #
+#500000
+b0 %
+b100 #
+#600000
+b11111110 %
+b101 #
+#700000
+b10 %
+b110 #
+#800000
+b0 %
+b111 #
+#900000

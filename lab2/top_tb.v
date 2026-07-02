@@ -9,9 +9,9 @@ top uut(clk, ins);
 
 always #5 clk = ~clk;
 
-initial begin
-$monitor("t=%0t ins=%b wr=%d we=%b data=%d", $time, ins, uut.write_reg, uut.write_enable, uut.data);
+always @(posedge clk) $display("t=%0t ins=%b wr=%d data=%d", $time, ins, uut.write_reg, uut.data);
 
+initial begin
 $dumpfile("top.vcd");
 $dumpvars(0,uut);
 

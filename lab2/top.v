@@ -1,40 +1,29 @@
-module top(input reg [7:0] ins);
-reg alu_sel=000; 
+module top(input clk, input [7:0] ins);
 
-reg [7:0] immediate;
-reg [2:0] read_reg1, read_reg2,write_reg;
-reg write_enable;
+wire [7:0] immediate;
+wire [2:0] read_reg1, read_reg2, write_reg, alu_sel;
+wire write_enable, comp, imm_reg2;
 
+control cu(ins, immediate, read_reg1, read_reg2, write_reg, write_enable, comp, imm_reg2, alu_sel);
 
-control cu(ins,immediate,read_reg1, read_reg2,write_reg,write_enable,comp,imme_reg2,alu_sel)
+wire [7:0] reg_out1, reg_out2;
+wire [7:0] data;
 
-reg [7:0] reg_out1, reg_out2;
-// reg file
-reg_file rg(read_reg1, read_reg2, write_reg, write_enable, data, reg_out1, reg_out2);
-reg [7:0] reg_comp;
+reg_file rg(clk, read_reg1, read_reg2, write_reg, write_enable, data, reg_out1, reg_out2);
 
-tows_compliment tc(reg_out2,reg_comp);
-reg [7:0]im_reg;
+wire [7:0] reg_comp;
+twos_compliment tc(reg_out2, reg_comp);
 
-if(comp) begin
-im_reg=reg2_comp;
-end 
-else begin 
-im_reg=reg_out2;
-end
+wire [7:0] im_reg;
+assign im_reg = comp ? reg_comp : reg_out2;
 
+wire [7:0] op1;
+assign op1 = imm_reg2 ? immediate : im_reg;
 
-reg [7:0] op1
-if(imme_reg2) begin 
-op1 = immediate;
-end 
-else begin 
-op1 = im_reg;
-end
-
-
+wire [7:0] o;
+wire c;
 eight_bit_alu_case alu(op1, reg_out1, alu_sel, o, c);
 
-data = o;
+assign data = o;
 
 endmodule

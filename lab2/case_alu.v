@@ -4,14 +4,10 @@ always @(*)
 begin
 c = 1'b0;
 case (sel)
-3'b000: {c,o} = a+b;
-3'b001: {c,o} = a-b;
+3'b000:o=a;
+3'b001: {c,o} = a+b;
 3'b010: o = a&b;
 3'b011: o = a|b;
-3'b100: o = a^b;
-3'b101: o = ~a;
-3'b110: o = a<<1;
-3'b111: o = a>>1;
 default: ;
 endcase
 end

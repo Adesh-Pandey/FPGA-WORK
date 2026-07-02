@@ -26,16 +26,19 @@ uut.rg.regs[5]=8'd1;
 uut.rg.regs[6]=8'd20;
 uut.rg.regs[7]=8'd6;
 
-ins=8'b00000000; // ADD A,B -> 8
+ins=8'b00000001; // ADD A,B  -> A=5+3=8
 #10;
 
-ins=8'b00000001; // ADD C,D -> 14
+ins=8'b00000010; // ADD A,C  -> A=8+10=18
 #10;
 
-ins=8'b00000010; // ADD E,F -> 9
+ins=8'b00001011; // SUB A,D  -> A=18-4=14
 #10;
 
-ins=8'b00000011; // ADD G,H -> 26
+ins=8'b00010101; // AND A,F  -> A=14&1=0
+#10;
+
+ins=8'b00100110; // MOV A,G  -> A=reg6=20
 #10;
 
 $finish;
